@@ -27,10 +27,8 @@ public class EditarImagemActivity extends AppCompatActivity {
         Imagem imagem = bd.getImagem(id);
         final EditText nome = (EditText) findViewById(R.id.etNome);
         final EditText descricao = (EditText) findViewById(R.id.etDescricao);
-//        final EditText ano = (EditText) findViewById(R.id.etAno);
         nome.setText(imagem.getNome());
         descricao.setText(imagem.getDescricao());
-//        caminho.setText(String.valueOf(imagem.getCaminho()));
 
         final Button alterar = (Button) findViewById(R.id.btnAlterar);
         alterar.setOnClickListener(new View.OnClickListener() {
@@ -40,7 +38,6 @@ public class EditarImagemActivity extends AppCompatActivity {
                 imagem.setId(id);
                 imagem.setNome(nome.getText().toString());
                 imagem.setDescricao(descricao.getText().toString());
-//                imagem.setAno(Integer.parseInt(ano.getText().toString()));
                 bd.updateImagem(imagem);
                 Intent intent = new Intent(EditarImagemActivity.this, MainActivity.class);
                 startActivity(intent);

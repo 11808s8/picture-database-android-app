@@ -1,8 +1,11 @@
 package br.ucs.android.trabalho01.aplicativobancodadosimagemrecycler.adapter;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,19 +47,22 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 //        private TextView txtFase;
         private TextView txtNome;
         private TextView txtDescricao;
+        private ImageView imageView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
             txtNome = itemView.findViewById(R.id.txtNome);
             txtDescricao = itemView.findViewById(R.id.txtDescricao);
-//            txtTitulo = itemView.findViewById(R.id.txtTitulo);
+            imageView = itemView.findViewById(R.id.pv_image);
         }
 
         private void setData(Imagem imagens) {
             txtNome.setText(imagens.getNome());
             txtDescricao.setText(imagens.getDescricao());
-//            txtTitulo.setText(imagens.getTitulo());
+
+            Bitmap bitmap = BitmapFactory.decodeFile(imagens.getCaminho());
+            imageView.setImageBitmap(bitmap);
 
         }
 

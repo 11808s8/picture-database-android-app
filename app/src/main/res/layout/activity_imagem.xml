@@ -65,14 +65,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="100px"
-                android:text="Tirar foto" />
+                android:text="Tirar foto"
+                android:onClick="tirarFoto"/>
 
             <Button
                 android:id="@+id/btnAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="20px"
-                android:text="Adicionar" />
+                android:text="Adicionar"/>
         </LinearLayout>
 
     </LinearLayout>
