@@ -98,7 +98,6 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(NOME, imagem.getNome());
         values.put(DESCRICAO, imagem.getDescricao());
-        values.put(CAMINHO, imagem.getCaminho());
         int i = db.update(TABELA_IMAGEM, //tabela
                 values, // valores
                 ID+" = ?", // colunas para comparar

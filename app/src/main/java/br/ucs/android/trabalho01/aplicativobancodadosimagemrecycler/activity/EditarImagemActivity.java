@@ -4,10 +4,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import br.ucs.android.trabalho01.aplicativobancodadosimagemrecycler.R;
 import br.ucs.android.trabalho01.aplicativobancodadosimagemrecycler.banco.BDSQLiteHelper;
@@ -16,6 +20,7 @@ import br.ucs.android.trabalho01.aplicativobancodadosimagemrecycler.model.Imagem
 public class EditarImagemActivity extends AppCompatActivity {
 
     private BDSQLiteHelper bd;
+    private ImageView imagemView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +32,8 @@ public class EditarImagemActivity extends AppCompatActivity {
         Imagem imagem = bd.getImagem(id);
         final EditText nome = (EditText) findViewById(R.id.etNome);
         final EditText descricao = (EditText) findViewById(R.id.etDescricao);
+        imagemView = (ImageView) findViewById(R.id.pv_image);
+        mostraFoto(imagem.getCaminho());
         nome.setText(imagem.getNome());
         descricao.setText(imagem.getDescricao());
 
@@ -66,5 +73,10 @@ public class EditarImagemActivity extends AppCompatActivity {
                         .setNegativeButton(android.R.string.no, null).show();
             }
         });
+    }
+
+    private void mostraFoto(String caminho) {
+        Bitmap bitmap = BitmapFactory.decodeFile(caminho);
+        imagemView.setImageBitmap(bitmap);
     }
 }
