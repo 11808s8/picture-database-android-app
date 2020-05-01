@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
@@ -55,6 +56,7 @@ public class ImagemActivity extends AppCompatActivity {
                 imagem.setDescricao(descricao.getText().toString());
                 imagem.setCaminho(arquivoFoto.getAbsolutePath());
                 bd.addImagem(imagem);
+                Toast.makeText(ImagemActivity.this, "Imagem adicionada com sucesso!", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(ImagemActivity.this,MainActivity.class);
                 startActivity(intent);
             }

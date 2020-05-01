@@ -1,6 +1,7 @@
 package br.ucs.android.trabalho01.aplicativobancodadosimagemrecycler.activity;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -8,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -16,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -80,9 +83,23 @@ public class MainActivity extends AppCompatActivity {
                             intent.putExtra("ID", listaImagens.get(position).getId());
                             startActivity(intent);
                     }
+                    @Override public void onLongItemClick(View view, final int position) {
+                        new AlertDialog.Builder(MainActivity.this)
+                                .setTitle(R.string.confirmar_exclusao)
+                                .setMessage(R.string.quer_mesmo_apagar)
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
-                    @Override public void onLongItemClick(View view, int position) {
-                        // do whatever
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        Imagem imagem = new Imagem();
+                                        imagem.setId(listaImagens.get(position).getId());
+                                        bd.deleteImagem(imagem);
+                                        Toast.makeText(MainActivity.this, "Imagem deletada com sucesso!", Toast.LENGTH_LONG).show();
+                                        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                                        startActivity(intent);
+                                    }
+                                })
+                                .setNegativeButton(android.R.string.no, null).show();
                     }
                 })
         );

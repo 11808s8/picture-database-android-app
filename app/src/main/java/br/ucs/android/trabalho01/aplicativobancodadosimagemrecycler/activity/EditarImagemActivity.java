@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import br.ucs.android.trabalho01.aplicativobancodadosimagemrecycler.R;
 import br.ucs.android.trabalho01.aplicativobancodadosimagemrecycler.banco.BDSQLiteHelper;
@@ -46,31 +47,9 @@ public class EditarImagemActivity extends AppCompatActivity {
                 imagem.setNome(nome.getText().toString());
                 imagem.setDescricao(descricao.getText().toString());
                 bd.updateImagem(imagem);
+                Toast.makeText(EditarImagemActivity.this, "Imagem alterada com sucesso!", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(EditarImagemActivity.this, MainActivity.class);
                 startActivity(intent);
-            }
-        });
-
-        final Button remover = (Button) findViewById(R.id.btnRemover);
-        remover.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                new AlertDialog.Builder(EditarImagemActivity.this)
-                        .setTitle(R.string.confirmar_exclusao)
-                        .setMessage(R.string.quer_mesmo_apagar)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                Imagem imagem = new Imagem();
-                                imagem.setId(id);
-                                bd.deleteImagem(imagem);
-                                Intent intent = new Intent(EditarImagemActivity.this, MainActivity.class);
-                                startActivity(intent);
-                            }
-                        })
-                        .setNegativeButton(android.R.string.no, null).show();
             }
         });
     }
