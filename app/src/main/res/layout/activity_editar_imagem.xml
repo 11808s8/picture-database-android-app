@@ -19,7 +19,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etNome"
             android:layout_width="match_parent"
-            android:layout_height="37dp"
+            android:layout_height="50dp"
             android:hint="Nome" />
     </com.google.android.material.textfield.TextInputLayout>
 
