@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
                                     public void onClick(DialogInterface dialog, int whichButton) {
                                         Imagem imagem = new Imagem();
                                         imagem.setId(listaImagens.get(position).getId());
+                                        imagem.setCaminho((listaImagens.get(position).getCaminho()));
                                         bd.deleteImagem(imagem);
                                         Toast.makeText(MainActivity.this, "Imagem deletada com sucesso!", Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(MainActivity.this, MainActivity.class);

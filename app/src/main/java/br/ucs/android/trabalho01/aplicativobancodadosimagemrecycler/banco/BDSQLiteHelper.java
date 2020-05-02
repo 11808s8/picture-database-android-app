@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import br.ucs.android.trabalho01.aplicativobancodadosimagemrecycler.model.Imagem;
@@ -108,6 +109,8 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
 
     public int deleteImagem(Imagem imagem) {
         SQLiteDatabase db = this.getWritableDatabase();
+        File file = new File(imagem.getCaminho());
+        file.delete();
         int i = db.delete(TABELA_IMAGEM, //tabela
                 ID+" = ?", // colunas para comparar
                 new String[] { String.valueOf(imagem.getId()) });
