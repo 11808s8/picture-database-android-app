@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Banco de Dados Local</string>
-    <string name="confirmar_exclusao">Confirme exclusão</string>
-    <string name="quer_mesmo_apagar">Você realmente quer apagar esse registro?</string>
+    <string name="app_name">Banco de Dados de Imagens usando Recycler</string>
+    <string name="confirmar_exclusao">Confirme a exclusão por favor</string>
+    <string name="quer_mesmo_apagar">Você realmente quer apagar essa imagem?</string>
 </resources>

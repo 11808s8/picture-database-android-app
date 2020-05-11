@@ -26,19 +26,21 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    // criação básica de tabelão de imagens
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_TABLE = "CREATE TABLE imagem ("+
-                "id INTEGER PRIMARY KEY AUTOINCREMENT,"+
-                "nome TEXT,"+
-                "descricao TEXT,"+
-                "caminho TEXT)";
+        String CREATE_TABLE = "CREATE TABLE "+TABELA_IMAGEM+" ("+
+                ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+
+                NOME + " TEXT,"+
+                DESCRICAO + " TEXT,"+
+                CAMINHO + " TEXT)";
         db.execSQL(CREATE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS imagem");
+        String DELETE_TABLE ="DROP TABLE IF EXISTS " + TABELA_IMAGEM;
+        db.execSQL(DELETE_TABLE);
         this.onCreate(db);
     }
 
@@ -49,7 +51,7 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
         values.put(DESCRICAO, imagem.getDescricao());
         values.put(CAMINHO, imagem.getCaminho());
         db.insert(TABELA_IMAGEM, null, values);
-        db.close();
+        db.close(); // fecha conexao com o banco
     }
 
     public Imagem getImagem(int id) {
@@ -63,7 +65,7 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
                 null, // g. order by
                 null); // h. limit
         if (cursor == null) {
-            return null;
+            return null; // @REFACTOR refatorar isso aqui pra retornar algo + tratavel OU TRATAR NO RETORNO
         } else {
             cursor.moveToFirst();
             Imagem imagem = cursorToImagem(cursor);
@@ -102,8 +104,8 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
         int i = db.update(TABELA_IMAGEM, //tabela
                 values, // valores
                 ID+" = ?", // colunas para comparar
-                new String[] { String.valueOf(imagem.getId()) }); //parâmetros
-        db.close();
+                new String[] { String.valueOf(imagem.getId()) }); //param P COMPARAÇÂO
+        db.close(); // fecha conexao com o banco
         return i; // número de linhas modificadas
     }
 
@@ -114,8 +116,8 @@ public class BDSQLiteHelper extends SQLiteOpenHelper {
         int i = db.delete(TABELA_IMAGEM, //tabela
                 ID+" = ?", // colunas para comparar
                 new String[] { String.valueOf(imagem.getId()) });
-        db.close();
-        return i; // número de linhas excluídas
+        db.close(); // fecha conexao com o banco
+        return i; // número TOTAL de linhas excluídas
     }
 }
 

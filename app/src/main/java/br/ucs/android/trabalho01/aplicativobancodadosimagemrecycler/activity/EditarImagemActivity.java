@@ -34,8 +34,7 @@ public class EditarImagemActivity extends AppCompatActivity {
         final EditText nome = (EditText) findViewById(R.id.etNome);
         final EditText descricao = (EditText) findViewById(R.id.etDescricao);
         imagemView = (ImageView) findViewById(R.id.pv_image);
-        mostraFoto(imagem.getCaminho());
-        nome.setText(imagem.getNome());
+        mostraFoto(imagem.getCaminho()); nome.setText(imagem.getNome());
         descricao.setText(imagem.getDescricao());
 
         final Button alterar = (Button) findViewById(R.id.btnAlterar);
@@ -54,6 +53,7 @@ public class EditarImagemActivity extends AppCompatActivity {
         });
     }
 
+    // COLOCA IMAGEM NO IMAGEVIEW
     private void mostraFoto(String caminho) {
         Bitmap bitmap = BitmapFactory.decodeFile(caminho);
         imagemView.setImageBitmap(bitmap);

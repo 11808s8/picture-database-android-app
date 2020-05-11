@@ -4,8 +4,6 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -17,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -32,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView lista;
     private BDSQLiteHelper bd;
     ArrayList<Imagem> listaImagens;
-    private static final int PERMISSAO_REQUEST = 2;
+    private static final int PERMISSAO_REQUEST = 2; // refatorar isso
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         listaImagens = bd.getAllImagens();
 
-        lista = findViewById(R.id.lvImagens); // REFACTOR THIS
+        lista = findViewById(R.id.lvImagens); // @REFACTOR ISSO AQUI
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         lista.setLayoutManager(layoutManager);
@@ -78,16 +75,20 @@ public class MainActivity extends AppCompatActivity {
 
         lista.addOnItemTouchListener(
                 new RecyclerItemClickListener(this, lista ,new RecyclerItemClickListener.OnItemClickListener() {
+                    // Se clica na imagem brevemente abre a edição
                     @Override public void onItemClick(View view, int position) {
                             Intent intent = new Intent(MainActivity.this, EditarImagemActivity.class);
                             intent.putExtra("ID", listaImagens.get(position).getId());
                             startActivity(intent);
                     }
+                    // Se der uma seguradinha, abre a exclusão :D
                     @Override public void onLongItemClick(View view, final int position) {
                         new AlertDialog.Builder(MainActivity.this)
                                 .setTitle(R.string.confirmar_exclusao)
                                 .setMessage(R.string.quer_mesmo_apagar)
                                 .setIcon(android.R.drawable.ic_dialog_alert)
+
+                                // Caso dê sim, deleta a imagem do banco
                                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
                                     public void onClick(DialogInterface dialog, int whichButton) {

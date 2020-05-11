@@ -8,6 +8,7 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+// Classe recycler na msm ideia da usada em aula
 public class RecyclerItemClickListener implements RecyclerView.OnItemTouchListener {
     private OnItemClickListener mListener;
 
@@ -26,13 +27,10 @@ public class RecyclerItemClickListener implements RecyclerView.OnItemTouchListen
             public boolean onSingleTapUp(MotionEvent e) {
                 return true;
             }
-
             @Override
             public void onLongPress(MotionEvent e) {
                 View child = recyclerView.findChildViewUnder(e.getX(), e.getY());
-                if (child != null && mListener != null) {
-                    mListener.onLongItemClick(child, recyclerView.getChildAdapterPosition(child));
-                }
+                if (child != null && mListener != null) mListener.onLongItemClick(child, recyclerView.getChildAdapterPosition(child));
             }
         });
     }
@@ -47,7 +45,6 @@ public class RecyclerItemClickListener implements RecyclerView.OnItemTouchListen
     }
 
     @Override public void onTouchEvent(RecyclerView view, MotionEvent motionEvent) { }
-
     @Override
     public void onRequestDisallowInterceptTouchEvent (boolean disallowIntercept){}
 }

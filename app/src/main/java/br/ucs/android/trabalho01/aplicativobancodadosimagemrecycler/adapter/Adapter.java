@@ -56,10 +56,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             imageView = itemView.findViewById(R.id.pv_image);
         }
 
+        // dados da imagem
         private void setData(Imagem imagens) {
             txtNome.setText(imagens.getNome());
             txtDescricao.setText(imagens.getDescricao());
-
             Bitmap bitmap = BitmapFactory.decodeFile(imagens.getCaminho());
             imageView.setImageBitmap(bitmap);
 

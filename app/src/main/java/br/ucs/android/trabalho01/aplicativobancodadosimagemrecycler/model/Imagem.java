@@ -1,5 +1,6 @@
 package br.ucs.android.trabalho01.aplicativobancodadosimagemrecycler.model;
 
+// MODELÃO do objeto IMAGEM do banco. É uma representação da tabela de mesmo nome do banco
 public class Imagem {
 
     private int id;
@@ -10,10 +11,14 @@ public class Imagem {
     public Imagem() { }
 
     public Imagem(String nome, String descricao, String caminho) {
+
+        // BASICAMENTE UM DATA TRANSFER DO MODELO
         this.nome = nome;
         this.descricao = descricao;
         this.caminho = caminho;
     }
+
+    // GETTERS E SETTERS DO OBJETO
 
     public int getId() {
         return id;

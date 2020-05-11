@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("br.ucs.android.trabalho01.bancodedadoslocal", appContext.getPackageName());
+        assertEquals("br.ucs.android.trabalho01.aplicativobancodadosimagemrecycler", appContext.getPackageName());
     }
 }

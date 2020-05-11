@@ -111,6 +111,7 @@ public class ImagemActivity extends AppCompatActivity {
     }
 
     private File criaArquivo() throws IOException {
+        // timestamp básico pro nome da imagem
         String timeStamp = new
                 SimpleDateFormat("yyyyMMdd_Hhmmss").format(
                 new Date());
